@@ -1,11 +1,28 @@
 import 'package:mvvm/di/net/dio_manager.dart';
-import 'package:mvvm/di/net/request_method.dart';
+import 'package:rxdart/rxdart.dart';
 
 ///
 class LoginService {
   ///
-  Future login<T>({Map<String, dynamic> params}) async =>
-      await DioManager().request<T>(RequestMethod.GET, "login");
+  Future _get(String url, {Map<String, dynamic> params}) async {
+    var response = await DioManager().dio.get(url, queryParameters: params);
+    return response.data;
+  }
+
+  ///
+  Observable login(String url, {Map<String, dynamic> params}) =>
+      Observable.fromFuture(_get(url, params: params)).asBroadcastStream();
+
+  // Observable post(String url, Map<String, dynamic> params) =>
+  //     Observable.fromFuture(_post(url, params)).asBroadcastStream();
+  //
+  // Observable get(String url, {Map<String, dynamic> params}) =>
+  //     Observable.fromFuture(_get(url, params: params)).asBroadcastStream();
+  //
+  // Future _post(String url, Map<String, dynamic> params) async {
+  //   var response = await dio.post(url, data: params);
+  //   return response.data;
+  // }
 }
 
 /// 登录接口
@@ -17,19 +34,11 @@ class LoginRepository {
   LoginRepository(this._loginService);
 
   ///
-  // Future<BaseEntity> login(String username, String password) {
-  //   return _loginService.login();
-  // }
+// Future<BaseEntity> login(String username, String password) {
+//   return _loginService.login();
+// }
 
-  Future login<T>(String username, String password) {
-    return _loginService.login<T>();
-    // LoginEntity entity;
-
-    // _loginService.login<LoginEntity>().then((value) {
-    //   entity = value.reponseData as LoginEntity;
-    //   return entity;
-    //   // LoginEntity().fromJson(value.data as Map<String, String>)
-    //   // LoginEntity().fromJson(value.data as Map<String, String>)
-    // });
+  Observable login(String username, String password) {
+    return _loginService.login("");
   }
 }

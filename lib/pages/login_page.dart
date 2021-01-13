@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm/di/net/result_code.dart';
 import 'package:mvvm/viewmodel/login_provide.dart';
+import 'package:mvvm/widgets/toast.dart';
 
 import 'common/base.dart';
 
@@ -60,10 +62,25 @@ class __LoginContentPageState extends State<_LoginContentPage>
     );
   }
 
+  /// 登录
+  ///
+  /// 调用 [mProvide] 的 login 方法并进行订阅
+  /// 请求开始时：启动动画 [AnimationStatus.forward]
+  /// 请求结束时：反转动画 [AnimationStatus.reverse]
+  /// 成功 ：弹出 'login success'
+  /// 失败 ：[dispatchFailure] 显示错误原因
   void login() {
-    provider.login().then((value) {
-      print("action page 登录界面 用户：${value} 登陆成功");
+    final s = provider.login().doOnListen(() {
+      print("请求开始");
+    }).doOnDone(() {
+      print("请求结束");
+    }).listen((value) {
+      print("请求结果 $value");
+      Toast.show("login success", context, type: Toast.SUCCESS);
+    }, onError: (e) {
+      print("请求异常 ${e.toString()}");
+      dispatchFailure(context, e);
     });
-    // provider.addSubscription(subscription)
+    provider.addSubscription(s);
   }
 }
