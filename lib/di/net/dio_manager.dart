@@ -51,18 +51,21 @@ class DioManager {
   }
 
   ///
-  Future request<T>(RequestMethod method, String path,
+  Future<T> request<T>(RequestMethod method, String path,
       {Map<String, dynamic> map}) {
     return _request<T>(method, path, map: map);
   }
 
   ///
-  Future _request<T>(RequestMethod method, String path,
+  Future<T> _request<T>(RequestMethod method, String path,
       {Map<String, dynamic> map}) async {
     Response response;
+    BaseEntity<T> entity;
 
     print("_request  $method $path");
 
+    // PublishSubject publishSubject = PublishSubject();
+    // publishSubject.dol
     try {
       if (method == RequestMethod.POST) {
         response = await dio.post(path,
@@ -72,27 +75,19 @@ class DioManager {
             queryParameters: map,
             options: Options(method: RequestMethodValues[method]));
       }
-
+      //
       if (response != null) {
-        print("response !=null ${response.data.runtimeType}");
-        BaseEntity entity = BaseEntity<T>.fromJson(response.data);
-
-        print("${entity.toString()} ");
-        if (entity.code == 200) {
-          return Future<T>.value(entity.data as T);
-        } else {
-          return Future.error(
-              ErrorEntity(code: entity.code, message: entity.message));
-        }
+        entity = BaseEntity<T>.fromJson(response.data);
       } else {
-        print("未知错误");
-        return Future.error(ErrorEntity(code: -1, message: "未知错误"));
+        throw NullThrownError();
       }
     } on DioError catch (e) {
+      throw createErrorEntity(e);
       // errCallBack(createErrorEntity(e));
-      print("未知错误 ${createErrorEntity(e)}");
-      return Future.error(createErrorEntity(e));
+      // print("未知错误 ${createErrorEntity(e)}");
+      // return Future.value(createErrorEntity(e));
     }
+    return entity.reponseData;
   }
 
   ///

@@ -9,8 +9,9 @@ class LogsInterceptors extends InterceptorsWrapper {
     print("LogsInterceptors 请求url：${options.path}");
     print('LogsInterceptors 请求头: ' + options.headers.toString());
     if (options.data != null) {
-      print('LogsInterceptors请求参数: ' + options.data.toString());
+      print('\nLogsInterceptors请求参数: ' + options.data.toString());
     }
+    print("================== 请求数据结束 ==========================\n");
     return options;
   }
 
@@ -22,6 +23,7 @@ class LogsInterceptors extends InterceptorsWrapper {
       var responseStr = response.toString();
       print("LogsInterceptors  onResponse " + responseStr);
     }
+    print("================== 响应数据结束 ==========================\n");
 
     return response; // continue
   }
@@ -31,6 +33,8 @@ class LogsInterceptors extends InterceptorsWrapper {
     print("\n================== 错误响应数据 ======================");
     print('LogsInterceptors 请求异常: ' + err.toString());
     print('LogsInterceptors 请求异常信息: ' + err.response?.toString() ?? " 无效数据 ");
+    print("================== 错误响应数据结束 ======================\n");
+
     return err;
   }
 }

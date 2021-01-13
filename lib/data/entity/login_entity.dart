@@ -1,5 +1,6 @@
 import 'package:mvvm/generated/json/base/json_convert_content.dart';
 
+///
 class LoginEntity with JsonConvert<LoginEntity> {
   String id;
   String sex;

@@ -61,7 +61,9 @@ class __LoginContentPageState extends State<_LoginContentPage>
   }
 
   void login() {
-    print("action page 登录");
-    provider.login().then((value) => {print(" ${value.username} ")});
+    provider.login().then((value) {
+      print("action page 登录界面 用户：${value} 登陆成功");
+    });
+    // provider.addSubscription(subscription)
   }
 }

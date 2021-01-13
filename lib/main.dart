@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm/pages/login_page.dart';
+import 'package:mvvm/router.dart';
 import 'package:provider/provider.dart';
 
 import 'di/app_module.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: MyRouter().registerRouter(),
       home: LoginPage("app"),
     );
   }

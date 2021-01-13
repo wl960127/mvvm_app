@@ -8,17 +8,18 @@ import 'package:mvvm/generated/json/login_entity_helper.dart';
 
 class JsonConvert<T> {
   T fromJson(Map<String, dynamic> json) {
-    return _getFromJson<T>(runtimeType, this, json);
+    return _getFromJson<T>(runtimeType, this, json) as T;
   }
 
   Map<String, dynamic> toJson() {
-    return _getToJson<T>(runtimeType, this);
+    return _getToJson<T>(runtimeType, this) as Map<String, dynamic>;
   }
 
   static _getFromJson<T>(Type type, data, json) {
     switch (type) {
       case LoginEntity:
-        return loginEntityFromJson(data as LoginEntity, json) as T;
+        return loginEntityFromJson(
+            data as LoginEntity, json as Map<String, dynamic>) as T;
     }
     return data as T;
   }
@@ -35,7 +36,7 @@ class JsonConvert<T> {
   static _fromJsonSingle<M>(json) {
     String type = M.toString();
     if (type == (LoginEntity).toString()) {
-      return LoginEntity().fromJson(json);
+      return LoginEntity().fromJson(json as Map<String, dynamic>);
     }
     return null;
   }
@@ -43,8 +44,10 @@ class JsonConvert<T> {
   //list is returned by type
   static M _getListChildType<M>(List data) {
     if (List<LoginEntity>() is M) {
-      return data.map<LoginEntity>((e) => LoginEntity().fromJson(e)).toList()
-          as M;
+      return data
+          .map<LoginEntity>(
+              (e) => LoginEntity().fromJson(e as Map<String, dynamic>))
+          .toList() as M;
     }
     return null;
   }

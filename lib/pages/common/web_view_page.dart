@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 /// 通用跳转逻辑
 class CommonWebViewPage extends StatelessWidget {
@@ -11,11 +11,11 @@ class CommonWebViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//    return WebviewScaffold(
-//      url: url,
-//      appBar: AppBar(
-//        backgroundColor: Colors.blue,
-//      ),
-//    );
+    return WebviewScaffold(
+      url: url,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+      ),
+    );
   }
 }

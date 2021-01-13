@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
 //import 'package:mvvm/pages/common/web_view_page.dart';
 import 'package:mvvm/util/struct/router.dart';
+
+import 'pages/common/web_view_page.dart';
 
 /// app 协议头
 const String appScheme = "mvvm";
@@ -15,7 +16,7 @@ const Map<String, StructRouter> routerMapping = {
 };
 
 /// 处理APP内的跳转
-class Router {
+class MyRouter {
   /// 执行页面跳转
   ///
   /// 需要特别注意以下逻辑
@@ -28,7 +29,8 @@ class Router {
     if (url.startsWith('https://') || url.startsWith('http://')) {
       // 打开网页
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        //return CommonWebViewPage(url: url); // 请注意，打开这部分注释，需要在 pubspec.yaml 中增加 flutter_webview_plugin 库的依赖，不然会报错，同时打开上面 import 的注释即可使用，具体请查看 pages/common/web_view_page.dart 文件
+        return CommonWebViewPage(url: url);
+        // 请注意，打开这部分注释，需要在 pubspec.yaml 中增加 flutter_webview_plugin 库的依赖，不然会报错，同时打开上面 import 的注释即可使用，具体请查看 pages/common/web_view_page.dart 文件
       }));
       return notEntrancePageIndex;
     }

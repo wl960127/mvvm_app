@@ -6,6 +6,18 @@ class BaseEntity<T> {
   String message;
   T data;
 
+  int get reponseCode {
+    return this.code;
+  }
+
+  String get reponseMsg {
+    return this.message;
+  }
+
+  T get reponseData {
+    return this.data;
+  }
+
   ///
   BaseEntity({this.code, this.message, this.data});
 

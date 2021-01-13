@@ -1,3 +1,4 @@
+import 'package:mvvm/data/entity/login_entity.dart';
 import 'package:mvvm/pages/common/base.dart';
 import 'package:mvvm/repo/login_repo.dart';
 
@@ -13,5 +14,5 @@ class LoginProvider extends BaseProvide {
   LoginProvider(this.title, this._loginRepo);
 
   ///
-  Future login() => _loginRepo.login(username, password);
+  Future login() => _loginRepo.login<LoginEntity>(username, password);
 }
