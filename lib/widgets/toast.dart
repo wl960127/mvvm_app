@@ -11,7 +11,8 @@ class Toast {
   static const int ERROR = -1;
   static const int NORMAL = 0;
   static const int SUCCESS = 1;
-///
+
+  ///
   static void show(String msg, BuildContext context,
       {int type = NORMAL,
       int duration = 1,
@@ -24,11 +25,12 @@ class Toast {
         textColor, backgroundRadius);
   }
 }
-///
-class ToastView {
-  static final ToastView _singleton =  ToastView._internal();
 
 ///
+class ToastView {
+  static final ToastView _singleton = ToastView._internal();
+
+  ///
   factory ToastView() {
     return _singleton;
   }
@@ -113,7 +115,7 @@ class ToastView {
     }
   }
 
-///
+  ///
   static dismiss() async {
     if (!_isVisible) {
       return;
@@ -137,7 +139,7 @@ class ToastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Positioned(
+    return Positioned(
         top: gravity == 2 ? 50 : null,
         bottom: gravity == 0 ? 50 : null,
         child: widget);

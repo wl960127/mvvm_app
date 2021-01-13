@@ -37,7 +37,7 @@ class DioManager {
     if (dio == null) {
       _cancelTokenMap = Map();
       BaseOptions options = BaseOptions(
-          baseUrl: "http://192.168.0.186:8080/admin/",
+          baseUrl: "http://192.168.5.11:1234/",
           //通用部分接口
           contentType: Headers.formUrlEncodedContentType,
           responseType: ResponseType.json,

@@ -14,7 +14,7 @@ loginEntityFromJson(LoginEntity data, Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> loginEntityToJson(LoginEntity entity) {
-  final Map<String, dynamic> data = new Map<String, dynamic>();
+  final Map<String, dynamic> data = Map<String, dynamic>();
   data['id'] = entity.id;
   data['sex'] = entity.sex;
   data['username'] = entity.username;

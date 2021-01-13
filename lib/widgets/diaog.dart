@@ -74,10 +74,13 @@ Future _showLoadingDialog(BuildContext c, LoadingDialog loading,
 class LoadingDialog extends CupertinoAlertDialog {
   ///
   BuildContext parentContext;
+
   ///
   BuildContext currentContext;
+
   ///
   bool showing;
+
   ///
   show(BuildContext context) {
     parentContext = context;
@@ -87,7 +90,7 @@ class LoadingDialog extends CupertinoAlertDialog {
     });
   }
 
-///
+  ///
   hide() {
     if (showing) {
       Navigator.removeRoute(parentContext, ModalRoute.of(currentContext));

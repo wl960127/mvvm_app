@@ -1,4 +1,3 @@
-
 import 'entity_factory.dart';
 
 ///
@@ -7,7 +6,7 @@ class BaseListEntity<T> {
   String message;
   List<T> data;
 
-///
+  ///
   BaseListEntity({this.code, this.message, this.data});
 
   factory BaseListEntity.fromJson(json) {
@@ -24,4 +23,5 @@ class BaseListEntity<T> {
       message: json["msg"] as String,
       data: mData,
     );
-  } }
+  }
+}

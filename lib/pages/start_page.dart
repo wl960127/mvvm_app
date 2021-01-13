@@ -13,6 +13,4 @@ class StartPage extends PageProvideNode<StartProvide> {
     // TODO: implement buildContent
     throw UnimplementedError();
   }
-
- 
 }

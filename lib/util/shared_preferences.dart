@@ -18,7 +18,7 @@ class SpUtil {
 
   static Future<SpUtil> getInstance() async {
     if (_instance == null) {
-      _instance = new SpUtil._();
+      _instance = SpUtil._();
       await _instance._init();
     }
     return _instance;
@@ -42,13 +42,13 @@ class SpUtil {
     return _spf.getKeys();
   }
 
-///
+  ///
   get(String key) {
     if (_beforCheck()) return null;
     return _spf.get(key);
   }
 
-///
+  ///
   getString(String key) {
     if (_beforCheck()) return null;
     return _spf.getString(key);
