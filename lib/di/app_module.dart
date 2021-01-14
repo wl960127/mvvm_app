@@ -1,6 +1,7 @@
 import 'package:dartin/dartin.dart';
 import 'package:mvvm/repo/login_repo.dart';
 import 'package:mvvm/viewmodel/login_provide.dart';
+import 'package:mvvm/viewmodel/start_provide.dart';
 import 'package:sp_util/sp_util.dart';
 
 ///
@@ -9,7 +10,8 @@ const mainScope = DartInScope('test');
 /// 定义ViewModel模块
 final viewModelModule = Module([
   factory<LoginProvider>(
-      ({params}) => LoginProvider(params.get(0) as String, get()))
+      ({params}) => LoginProvider(params.get(0) as String, get())),
+  factory<StartProvide>(({params}) => StartProvide())
 ])
   ..withScope(mainScope, []);
 

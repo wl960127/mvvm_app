@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm/di/net/result_code.dart';
 import 'package:mvvm/viewmodel/login_provide.dart';
+import 'package:mvvm/widgets/toast.dart';
 import 'package:provider/provider.dart';
 
 import 'common/base.dart';
@@ -8,7 +9,9 @@ import 'common/base.dart';
 ///
 class LoginPage extends PageProvideNode<LoginProvider> {
   ///
-  LoginPage(String title) : super(params: [title]);
+  // LoginPage();
+
+  LoginPage() : super();
 
   @override
   Widget buildContent(BuildContext context) {
@@ -51,7 +54,7 @@ class __LoginContentPageState extends State<_LoginContentPage>
     return Material(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(provider.title),
+          title: Text("login"),
         ),
         body: Center(
           child: Selector<LoginProvider, String>(
@@ -85,7 +88,7 @@ class __LoginContentPageState extends State<_LoginContentPage>
       print("page 请求结束");
     }).listen((value) {
       print("page 请求结果 $value");
-      // Toast.show("login success", context, type: Toast.SUCCESS);
+      Toast.show("login success", context, type: Toast.SUCCESS);
     }, onError: (e) {
       print("page 请求异常 ${e.toString()}");
       dispatchFailure(context, e);
