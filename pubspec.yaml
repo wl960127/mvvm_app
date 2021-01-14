@@ -33,6 +33,8 @@ dependencies:
   rxdart: ^0.21.0
   dio: 3.0.8 #latest version
   flutter_webview_plugin: ^0.3.11
+  dartdoc: ^0.38.0
+
 
 
 
